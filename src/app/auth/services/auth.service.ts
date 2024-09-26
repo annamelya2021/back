@@ -20,7 +20,8 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<User | null> {
-    return this.http.get<User[]>(`${this.baseUrl}/users?email=${email}`).pipe(
+    return this.http.get<User[]>(`${this.baseUrl}`).pipe(
+      map(users => users.filter(user => user.email === email)),
       map(users => users.length > 0 ? users[0] : null),
       tap(user => {
         if (user) {
@@ -44,13 +45,12 @@ export class AuthService {
       return of(true);
     }
 
-    return this.http.get<User>(`${this.baseUrl}/users/1`).pipe(
+    return this.http.get<User>(`${this.baseUrl}`).pipe(
       tap(user => (this.user = user)),
       map(user => !!user),
       catchError(err => of(false))
     );
   }
-
 
   logout() {
     this.user = undefined;
