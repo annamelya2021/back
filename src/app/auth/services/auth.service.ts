@@ -60,10 +60,13 @@ export class AuthService {
     }
 
     console.log('No stored user found, making API call to verify authentication.');
-    return this.http.get<User>(`${this.baseUrl}`).pipe(
-      tap(user => {
-        console.log('User fetched from API for authentication:', user);
-        this.user = user;
+    return this.http.get<User[]>(`${this.baseUrl}`).pipe(
+      tap(users => {
+        console.log('Users fetched from API for authentication:', users);
+        const foundUser = users.find(u => u.email === this.user?.email); // Шукаємо користувача за email
+        if (foundUser) {
+          this.user = foundUser;
+        }
       }),
       map(user => !!user),
       catchError(err => {
@@ -74,7 +77,6 @@ export class AuthService {
   }
 
   logout() {
-
     this.user = undefined;
     localStorage.clear();
   }
