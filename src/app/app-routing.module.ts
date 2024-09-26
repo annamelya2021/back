@@ -11,27 +11,27 @@ const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then( m => m.AuthModule),
-  /*   canActivate: [ PublicGuard ],
-    canMatch: [ PublicGuard ] */
+    canActivate: [ PublicGuard ],
+    canMatch: [ PublicGuard ]
   },
 
    {
     path: 'countries',
     loadChildren: () => import('./countries/countries.module').then( m => m.CountriesModule),
-   /*  canActivate: [ AuthGuard ],
-    canMatch: [ AuthGuard ] */
+    canActivate: [ AuthGuard ],
+    canMatch: [ AuthGuard ]
   },
   {
   path: 'weather',
   loadChildren: () => import('./tiempo/tiempo.module').then( m => m.TiempoModule ),
-  /* canActivate: [ AuthGuard ],
-    canMatch: [ AuthGuard ] */
+  canActivate: [ AuthGuard ],
+    canMatch: [ AuthGuard ]
 },
 {
   path: 'flags',
   loadChildren: () => import('./banderas/banderas.module').then( m => m.BanderasModule ),
- /*  canActivate: [ AuthGuard ],
-    canMatch: [ AuthGuard ] */
+  canActivate: [ AuthGuard ],
+    canMatch: [ AuthGuard ]
 },
 
   {
