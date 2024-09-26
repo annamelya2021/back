@@ -9,7 +9,7 @@ import { environments } from '../../../environments/environments';
   providedIn: 'root',
 })
 export class AuthService {
-  private baseUrl = environments.baseUrl;
+  private baseUrl = 'https://back-pwdf4njvd-annas-projects-8c717413.vercel.app/data/db.json';
   private user?: User;
 
   constructor(private http: HttpClient) {}
@@ -21,26 +21,26 @@ export class AuthService {
 
   login(email: string, password: string): Observable<User | null> {
     return this.http.get<User[]>(`${this.baseUrl}/users?email=${email}`).pipe(
-      map(users => users.length > 0 ? users[0] : null), 
+      map(users => users.length > 0 ? users[0] : null),
       tap(user => {
         if (user) {
           this.user = user;
-          localStorage.setItem('token', 'aASDgjhasda.asdasd.aadsf123k'); 
-          localStorage.setItem('user', JSON.stringify(user)); 
+          localStorage.setItem('token', 'aASDgjhasda.asdasd.aadsf123k');
+          localStorage.setItem('user', JSON.stringify(user));
         }
       }),
-      catchError(() => of(null)) 
+      catchError(() => of(null))
     );
   }
 
   checkAuthentication(): Observable<boolean> {
     const token = localStorage.getItem('token');
 
-    if (!token) return of(false); 
+    if (!token) return of(false);
 
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
-      this.user = JSON.parse(storedUser); 
+      this.user = JSON.parse(storedUser);
       return of(true);
     }
 
