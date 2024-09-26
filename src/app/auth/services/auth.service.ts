@@ -19,16 +19,14 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<User | null> {
-    console.log('Login initiated for email:', email);
 
-    return this.http.get<User[]>(`${this.baseUrl}`).pipe(
-      tap(users => console.log('Users fetched from API:', users)),
-      map(users => users.filter(user => user.email === email)),
+      return this.http.get<{ users: User[] }>(this.baseUrl).pipe(
+      tap(response => console.log('Users fetched from API:', response)),
+      map(response => response.users.filter(user => user.email === email)),
       tap(filteredUsers => console.log('Filtered users by email:', filteredUsers)),
       map(users => users.length > 0 ? users[0] : null),
       tap(user => {
         if (user) {
-          console.log('User found and logging in:', user);
           this.user = user;
           localStorage.setItem('token', 'aASDgjhasda.asdasd.aadsf123k');
           localStorage.setItem('user', JSON.stringify(user));
@@ -60,10 +58,10 @@ export class AuthService {
     }
 
     console.log('No stored user found, making API call to verify authentication.');
-    return this.http.get<User[]>(`${this.baseUrl}`).pipe(
-      tap(users => {
-        console.log('Users fetched from API for authentication:', users);
-        const foundUser = users.find(u => u.email === this.user?.email); // Шукаємо користувача за email
+    return this.http.get<{ users: User[] }>(this.baseUrl).pipe(
+      tap(response => {
+        console.log('Users fetched from API for authentication:', response);
+        const foundUser = response.users.find(u => u.email === this.user?.email);
         if (foundUser) {
           this.user = foundUser;
         }
