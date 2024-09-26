@@ -1,0 +1,33 @@
+<div class="container  align-items-center" style="min-height: 100vh;">
+  <div class=" ">
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="">
+
+
+        <mat-form-field class="w-100">
+          <mat-label>Usuario</mat-label>
+          <input type="text" matInput placeholder="Nombre de usuario">
+        </mat-form-field>
+
+        <mat-form-field class="w-100">
+          <mat-label>Nombre</mat-label>
+          <input type="text" matInput placeholder="Nombre">
+        </mat-form-field>
+
+        <mat-form-field class="w-100">
+          <mat-label>Contraseña</mat-label>
+          <input type="password" matInput placeholder="Contraseña">
+        </mat-form-field>
+
+        <button mat-button mat-flat-button color="primary" class="w-100 mt-3">
+          <mat-icon>save</mat-icon>
+          Crear cuenta
+        </button>
+
+        <div class="d-flex justify-content-end mt-4">
+          <a routerLink="/auth/login">¿No tienes cuenta?</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

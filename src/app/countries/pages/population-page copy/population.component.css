@@ -1,0 +1,45 @@
+
+/*
+.population-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+.population-card {
+  width: 300px;
+  margin: 16px;
+}
+
+
+mat-card-title {
+  font-size: 1.2em;
+}
+
+mat-card-subtitle {
+  margin-left: 15px;
+  font-size: 1em;
+  color: gray;
+}
+
+mat-card-content {
+  font-size: 1em;
+  color: #333;
+
+}
+.mat-icon {
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.mat-card-subtitle {
+  text-align: center;
+}
+ */
+.population-card{
+  margin: 20px ;
+  width: 300px;
+
+
+}

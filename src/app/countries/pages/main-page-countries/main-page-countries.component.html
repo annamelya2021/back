@@ -1,0 +1,44 @@
+<div class="container my-4">
+  <h2>¿Cómo vamos a buscar?</h2>
+  <hr />
+  <ul class="nav nav-pills justify-content-center mb-4">
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        routerLink="by-capital"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Por capital</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        routerLink="by-country"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Por país</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        routerLink="by-region"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Por región</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        routerLink="populationcopy"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Población de España</a
+      >
+    </li>
+  </ul>
+  <router-outlet></router-outlet>
+</div>
+

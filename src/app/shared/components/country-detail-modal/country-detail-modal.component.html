@@ -1,0 +1,17 @@
+<div class="modal-backdrop" *ngIf="showModal"></div>
+<div class="modal" *ngIf="showModal">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <img [src]="country.flags.svg" class="card-img-top img-flag" [alt]="country.name.common">
+    <h2>{{ country.name.common }}</h2>
+    <p><strong>Capital:</strong> {{ country.capital[0] }}</p>
+    <p><strong>Población:</strong> {{ country.population }}</p>
+
+    <p><strong>timezones:</strong> {{ country.timezones[0] }}</p>
+    <p><strong>country region :</strong> {{ country.region }}</p>
+    <p><strong>country area  :</strong> {{ country.area | number }} км²</p>
+
+    <p><strong>Bandera en Emoji:</strong> {{ country.flag }}</p>
+  </div>
+</div>
+

@@ -1,0 +1,26 @@
+<div class="container align-items-center" style="min-height: 100vh;">
+  <div class="">
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="d-flex flex-column">
+        <mat-form-field class="w-100">
+          <mat-label>Correo electrónico</mat-label>
+          <input type="email" matInput [(ngModel)]="email" placeholder="Correo electrónico">
+        </mat-form-field>
+
+        <mat-form-field class="w-100">
+          <mat-label>Contraseña</mat-label>
+          <input type="password" matInput [(ngModel)]="password" placeholder="Contraseña">
+        </mat-form-field>
+
+        <button mat-button mat-flat-button color="primary" class="w-100 mt-3" (click)="onLogin()">
+          <mat-icon>save</mat-icon>
+          Iniciar sesión
+        </button>
+
+        <div class="d-flex justify-content-end mt-4">
+          <a routerLink="/auth/new-account">¿No tienes una cuenta?</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

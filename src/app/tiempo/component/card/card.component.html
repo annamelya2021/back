@@ -1,0 +1,38 @@
+<div class="container my-4">
+
+  <search-weather (citySearch)="onCitySearch($event)"></search-weather>
+
+
+  <div *ngIf="MyWeather" class="mt-4">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-8 col-lg-6">
+        <mat-card class="weather-card text-center shadow-lg">
+          <mat-card-header>
+            <mat-card-title>
+              <h3>{{ MyWeather.name }}</h3>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <img mat-card-image src="{{ iconUrl }}" alt="Weather icon" class="weather-icon img-fluid mb-3">
+            <p><strong>Summary:</strong> {{ summary }}</p>
+            <p><strong>Temperature:</strong> {{ temperature }}°F</p>
+            <p><strong>Feels like:</strong> {{ feelsLikeTemp }}°F</p>
+            <p><strong>Pressure:</strong> {{ pressure }} hPa</p>
+            <p><strong>Humidity:</strong> {{ humidity }}%</p>
+            <p><strong>Country:</strong> {{ country }}</p>
+            <p><strong>Recommendation:</strong> {{ recommendation }}</p>
+            <p><strong>Sunrise:</strong> {{ sunrise }}</p>
+            <p><strong>Sunset:</strong> {{ sunset }}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+    <div class="row justify-content-center mt-4">
+      <div class="col-12 col-md-8">
+        <h2 class="text-center">{{ MyWeather?.name }}</h2>
+        <app-weather-chart [city]="MyWeather?.name"></app-weather-chart>
+      </div>
+    </div>
+  </div>
+</div>

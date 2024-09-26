@@ -1,0 +1,10 @@
+<!-- <p>weather-page works!</p> -->
+<mat-toolbar color="primary">
+  <span class="spacer"></span>
+  <button mat-button (click)="toggleTheme()">
+    {{ isDarkTheme() ? 'Light Theme' : 'Dark Theme' }}
+  </button>
+</mat-toolbar>
+
+<card-weather></card-weather>
+

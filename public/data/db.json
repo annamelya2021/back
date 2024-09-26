@@ -1,0 +1,24 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "user": "John Doe",
+      "email": "john.doe@gmail.com"
+    },
+    {
+      "id": 2,
+      "user": "John Due",
+      "email": "john.due@gmail.com"
+    },
+    {
+      "id": 3,
+      "user": "John Dou",
+      "email": "john.dou@gmail.com"
+    },{
+      "id": 4,
+      "user": "anna",
+      "email": "anna@gmail.com"
+    }
+  ]
+
+}

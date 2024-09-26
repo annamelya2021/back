@@ -1,0 +1,14 @@
+<div class="container mt-4">
+  <div class="row justify-content-center mt-4">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Enter city</mat-label>
+      <input
+        matInput
+        [(ngModel)]="cityName"
+        placeholder="City name"
+        (keyup)="onSearch()"
+        autocomplete="off"
+      >
+    </mat-form-field>
+  </div>
+</div>
