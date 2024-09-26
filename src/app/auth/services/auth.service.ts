@@ -9,7 +9,7 @@ import { environments } from '../../../environments/environments';
   providedIn: 'root',
 })
 export class AuthService {
-  private baseUrl = 'https://back-pwdf4njvd-annas-projects-8c717413.vercel.app/data/db.json';
+  private baseUrl = 'https://back-git-main-annas-projects-8c717413.vercel.app/data/db.json';
   private user?: User;
 
   constructor(private http: HttpClient) {}
