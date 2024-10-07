@@ -10,7 +10,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginPageComponent {
   email: string = '';
-  password: string = '';  // Для демонстрації, але пароль не використовується
+  password: string = '';
 
   constructor(
     private authService: AuthService,
@@ -26,10 +26,9 @@ export class LoginPageComponent {
     this.authService.login(this.email, this.password)
       .subscribe(user => {
         if (user) {
-          this.router.navigate(['/countries/by-capital']);
-        } else {
-          console.error('Invalid email or password');
+          this.router.navigate(['/flags']);
         }
+
       });
   }
 }

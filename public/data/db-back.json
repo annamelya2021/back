@@ -3,21 +3,26 @@
     {
       "id": 1,
       "user": "John Doe",
-      "email": "john.doe@gmail.com"
+      "email": "john.doe@gmail.com",
+      "rol": 2
     },
     {
       "id": 2,
       "user": "John Due",
-      "email": "john.due@gmail.com"
+      "email": "john.due@gmail.com",
+      "rol": 2
     },
     {
       "id": 3,
       "user": "John Dou",
-      "email": "john.dou@gmail.com"
+      "email": "john.dou@gmail.com",
+      "rol": 2
+
     },{
       "id": 4,
       "user": "anna",
-      "email": "anna@gmail.com"
+      "email": "anna@gmail.com",
+      "rol": 1
     }
   ]
 

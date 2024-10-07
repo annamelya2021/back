@@ -18,28 +18,27 @@ export class AuthService {
     return structuredClone(this.user);
   }
 
-  login(email: string, password: string): Observable<User | null> {
+login(email: string, password: string): Observable<User | null> {
+  return this.http.get<{ users: User[] }>(this.baseUrl).pipe(
+    tap(response => console.log('Users fetched from API:', response)),
+    map(response => response.users.find(user => user.email === email) || null), // Змінено на find
+    tap(user => {
+      if (user) {
+        this.user = user;
+        localStorage.setItem('token', 'aASDgjhasda.asdasd.aadsf123k');
+        localStorage.setItem('user', JSON.stringify(user)); // Тепер тут буде роль
+        console.log('User saved to localStorage:', user);
+      } else {
+        console.log('No user found with email:', email);
+      }
+    }),
+    catchError(err => {
+      console.error('Error during login request:', err);
+      return of(null);
+    })
+  );
+}
 
-      return this.http.get<{ users: User[] }>(this.baseUrl).pipe(
-      tap(response => console.log('Users fetched from API:', response)),
-      map(response => response.users.filter(user => user.email === email)),
-      tap(filteredUsers => console.log('Filtered users by email:', filteredUsers)),
-      map(users => users.length > 0 ? users[0] : null),
-      tap(user => {
-        if (user) {
-          this.user = user;
-          localStorage.setItem('token', 'aASDgjhasda.asdasd.aadsf123k');
-          localStorage.setItem('user', JSON.stringify(user));
-        } else {
-          console.log('No user found with email:', email);
-        }
-      }),
-      catchError(err => {
-        console.error('Error during login request:', err);
-        return of(null);
-      })
-    );
-  }
 
   checkAuthentication(): Observable<boolean> {
     const token = localStorage.getItem('token');
@@ -50,12 +49,14 @@ export class AuthService {
       return of(false);
     }
 
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      console.log('Stored user found:', storedUser);
-      this.user = JSON.parse(storedUser);
-      return of(true);
-    }
+  const storedUser = localStorage.getItem('user');
+if (storedUser) {
+  const parsedUser = JSON.parse(storedUser);
+  console.log('Stored user found:', parsedUser); // Логуємо користувача
+  console.log('User role:', parsedUser.rol); // Логуємо роль користувача
+} else {
+  console.log('No user found in localStorage.');
+}
 
     console.log('No stored user found, making API call to verify authentication.');
     return this.http.get<{ users: User[] }>(this.baseUrl).pipe(
