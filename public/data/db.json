@@ -23,6 +23,12 @@
       "user": "anna",
       "email": "anna@gmail.com",
       "rol": 1
+    },
+    {
+      "id": 5,
+      "user": "asd",
+      "email": "asd@gmail.com",
+      "rol": 2
     }
   ]
 

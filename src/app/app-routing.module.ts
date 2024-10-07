@@ -5,21 +5,21 @@ import { WeatherPageComponent } from './tiempo/pages/weather-page/weather-page.c
 import { Error404Component } from './shared/pages/error404/error404.component';
 import { AuthGuard } from './auth/guards/auth.guard';
 import { PublicGuard } from './auth/guards/public.guard';
+import { AdminGuard } from './auth/guards/admin.guard';
 
 const routes: Routes = [
 
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then( m => m.AuthModule),
-    canActivate: [ PublicGuard ],
-    canMatch: [ PublicGuard ]
+
   },
 
    {
     path: 'countries',
     loadChildren: () => import('./countries/countries.module').then( m => m.CountriesModule),
-    canActivate: [ AuthGuard ],
-    canMatch: [ AuthGuard ]
+ canActivate: [AuthGuard , AdminGuard],
+    canMatch: [AuthGuard ,AdminGuard]
   },
   {
   path: 'weather',

@@ -2,7 +2,7 @@
   <span>My App</span>
   <span class="spacer"></span>
 
-  <button mat-button routerLink="/countries">Countries</button>
+  <button mat-button *ngIf="isAdmin()" routerLink="/countries">Countries</button>
   <button mat-button routerLink="/weather">Weather</button>
   <button mat-button routerLink="/flags">Flags</button>
 
@@ -10,7 +10,7 @@
 
   <span *ngIf="user">{{ user.email }}</span>
 
-  <button mat-button (click)="onAuthAction()">
-    {{ user ? 'Logout' : 'Login' }}
-  </button>
+ <button mat-button (click)="onAuthAction()">
+    {{ isAuthenticated() ? 'Logout' : 'Login' }}
+</button>
 </mat-toolbar>

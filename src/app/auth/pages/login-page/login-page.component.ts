@@ -10,7 +10,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginPageComponent {
   email: string = '';
-  password: string = '';
+  password: string = '';  // Для демонстрації, але пароль не використовується
 
   constructor(
     private authService: AuthService,
