@@ -8,9 +8,7 @@ import { User } from '../interfaces/user.interface';
   providedIn: 'root',
 })
 export class AuthService {
-  isAuthenticated() {
-    throw new Error('Method not implemented.');
-  }
+
   private baseUrl = 'https://back-git-main-annas-projects-8c717413.vercel.app/data/db.json';
   private user?: User;
 
@@ -45,8 +43,7 @@ export class AuthService {
   }
 
   isAdmin(): boolean {
-    const role = localStorage.getItem('rol');
-    return role !== null && JSON.parse(role) === 1;
+    return localStorage.getItem('rol') === '1';
   }
 
   checkAuthentication(): Observable<boolean> {
@@ -56,8 +53,9 @@ export class AuthService {
 
  logout(): void {
   this.user = undefined;
-  localStorage.removeItem('token');
-  localStorage.removeItem('rol');
+/*   localStorage.removeItem('token');
+  localStorage.removeItem('rol'); */
+  localStorage.clear();
 }
 
 }

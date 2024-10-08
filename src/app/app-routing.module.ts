@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { WeatherPageComponent } from './tiempo/pages/weather-page/weather-page.component';
 import { Error404Component } from './shared/pages/error404/error404.component';
 import { AuthGuard } from './auth/guards/auth.guard';
-import { PublicGuard } from './auth/guards/public.guard';
 import { AdminGuard } from './auth/guards/admin.guard';
 
 const routes: Routes = [
