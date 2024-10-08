@@ -15,7 +15,6 @@ import { AuthService } from '../../../auth/services/auth.service';
     private authService: AuthService,
     private router: Router
   )  {
-    console.log('NavbarComponent initialized'); // Додайте цей рядок
 }
 
   get user(): User | undefined {
@@ -23,7 +22,6 @@ import { AuthService } from '../../../auth/services/auth.service';
   }
 
   onAuthAction() {
-    console.log('Auth action triggered'); // Додайте цей рядок
     if (this.user) {
         this.onLogout();
     } else {
@@ -41,15 +39,12 @@ import { AuthService } from '../../../auth/services/auth.service';
   }
 
 onLogout() {
-    console.log('onLogout method triggered'); // Додайте цей рядок для перевірки
     this.authService.logout();
-    console.log('Token after logout:', localStorage.getItem('token')); // Перевіряємо токен
-    this.router.navigate(['/auth/login']); // Перенаправляємо на сторінку входу
+    this.router.navigate(['/auth/login']);
 }
 
 
   isAuthenticated(): boolean {
-    // Перевіряємо наявність токена
     return !!localStorage.getItem('token');
   }
 }
