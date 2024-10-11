@@ -35,8 +35,7 @@ login(email: string, password: string): Observable<User | null> {
         const token = user.rol === 1 ? AuthService.adminToken : AuthService.userToken;
         localStorage.setItem('token', token);
         localStorage.setItem('rol', JSON.stringify(user.rol));
-        localStorage.setItem('user', JSON.stringify(user)); // Зберігаємо користувача
-      } else {
+        localStorage.setItem('user', JSON.stringify(user));
         console.log('No user found with email:', email);
       }
     }),
@@ -59,8 +58,6 @@ checkAuthentication(): Observable<boolean> {
 
  logout(): void {
   this.user = undefined;
-/*   localStorage.removeItem('token');
-  localStorage.removeItem('rol'); */
   localStorage.clear();
 }
 

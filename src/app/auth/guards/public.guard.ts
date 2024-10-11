@@ -15,11 +15,10 @@ export class PublicGuard implements CanActivate {
     return this.authService.checkAuthentication().pipe(
       map(isAuthenticated => {
         if (isAuthenticated) {
-          // Якщо користувач авторизований, перенаправляємо на головну сторінку
-          this.router.navigate(['/weather']); // Або інший маршрут
-          return false; // Забороняємо доступ до маршруту
+          this.router.navigate(['/weather']);
+          return false;
         }
-        return true; // Дозволяємо доступ до маршруту
+        return true;
       })
     );
   }
