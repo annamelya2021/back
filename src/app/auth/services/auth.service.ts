@@ -54,7 +54,7 @@ login(email: string, password: string): Observable<User | null> {
 
 checkAuthentication(): Observable<boolean> {
   const token = localStorage.getItem('token');
-  return of(!!token);  // Повертаємо true, якщо токен існує, і false в іншому випадку
+  return of(!!token);
 }
 
  logout(): void {

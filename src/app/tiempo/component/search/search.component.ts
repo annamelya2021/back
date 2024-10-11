@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
@@ -7,7 +8,7 @@ import { debounceTime } from 'rxjs/operators';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
 })
-export class SearchComponent {
+export class SearchComponent implements OnInit {
   cityName: string = '';
 
   @Output()
@@ -15,12 +16,23 @@ export class SearchComponent {
 
   private searchSubject = new Subject<string>();
 
-  constructor() {
+  constructor(private route: ActivatedRoute) {
     this.searchSubject.pipe(
-      debounceTime(1000)  // затримка в 500 мс після натискання клавіші
+      debounceTime(1000) // затримка в 1000 мс після натискання клавіші
     ).subscribe(city => {
       if (city) {
         this.citySearch.emit(city);
+      }
+    });
+  }
+
+  ngOnInit() {
+    // Отримання параметра "city" з URL
+    this.route.queryParams.subscribe(params => {
+      const city = params['city'];
+      if (city) {
+        this.cityName = city;
+        this.onSearch();  // Автоматичний пошук після завантаження сторінки
       }
     });
   }
