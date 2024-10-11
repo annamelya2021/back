@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, OnChanges } from '@angular/core';
 import { Country } from '../../../countries/countryApp/interfaces/country.interface';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser'; // Додано
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-country-detail-modal',
@@ -13,18 +13,17 @@ export class CountryDetailModalComponent implements OnChanges {
   @Output() close = new EventEmitter<void>();
 
   capitalCoords: { lat: number, lng: number } | undefined;
-  mapUrl: SafeResourceUrl | undefined; // Тип SafeResourceUrl
+  mapUrl: SafeResourceUrl | undefined;
 
-  constructor(private sanitizer: DomSanitizer) {} // Додано
+  constructor(private sanitizer: DomSanitizer) {}
 
   ngOnChanges() {
-    // Ініціалізація координат, коли модальне вікно відкривається або змінюються дані країни
     this.capitalCoords = this.getCapitalCoordinates();
     if (this.capitalCoords) {
       this.mapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
         `https://maps.google.com/maps?q=${this.capitalCoords.lat},${this.capitalCoords.lng}&z=12&output=embed`
       );
-      console.log('Map URL:', this.mapUrl); // Перевірка, чи створюється правильний URL
+      console.log('Map URL:', this.mapUrl);
     }
   }
 

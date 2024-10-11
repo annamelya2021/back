@@ -17,7 +17,6 @@
 
     <p><strong>Flag in Emoji:</strong> {{ country.flag }}</p>
 
-    <!-- Виведення карти через iFrame -->
     <div class="capital-map" *ngIf="mapUrl">
       <iframe
         [src]="mapUrl"

@@ -18,7 +18,7 @@ export class SearchComponent implements OnInit {
 
   constructor(private route: ActivatedRoute) {
     this.searchSubject.pipe(
-      debounceTime(1000) // затримка в 1000 мс після натискання клавіші
+      debounceTime(1000)
     ).subscribe(city => {
       if (city) {
         this.citySearch.emit(city);
@@ -27,17 +27,17 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Отримання параметра "city" з URL
+
     this.route.queryParams.subscribe(params => {
       const city = params['city'];
       if (city) {
         this.cityName = city;
-        this.onSearch();  // Автоматичний пошук після завантаження сторінки
+        this.onSearch();
       }
     });
   }
 
   onSearch() {
-    this.searchSubject.next(this.cityName);  // оновлення значення для пошуку
+    this.searchSubject.next(this.cityName);
   }
 }
