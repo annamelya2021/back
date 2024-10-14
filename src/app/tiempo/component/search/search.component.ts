@@ -27,11 +27,10 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.route.queryParams.subscribe(params => {
   if (params['city']) {
-    this.cityName = params['city'];  // Встановлюємо столицю в поле пошуку
-    this.onSearch();  // Автоматично викликаємо пошук
+    this.cityName = params['city'];
+    this.onSearch();
   }
 });
   }

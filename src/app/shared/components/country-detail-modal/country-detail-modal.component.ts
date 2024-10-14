@@ -16,7 +16,6 @@ export class CountryDetailModalComponent implements OnChanges {
   capitalCoords: { lat: number, lng: number } | undefined;
   mapUrl: SafeResourceUrl | undefined;
 
-  // Впроваджуємо Router у конструктор
   constructor(private sanitizer: DomSanitizer, private router: Router) {}
 
   ngOnChanges() {
@@ -25,7 +24,7 @@ export class CountryDetailModalComponent implements OnChanges {
       this.mapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
         `https://maps.google.com/maps?q=${this.capitalCoords.lat},${this.capitalCoords.lng}&z=12&output=embed`
       );
-      console.log('Map URL:', this.mapUrl);
+      // console.log('Map URL:', this.mapUrl);
     }
   }
 
@@ -33,10 +32,9 @@ export class CountryDetailModalComponent implements OnChanges {
     this.close.emit();
   }
 
-  // Метод для навігації на сторінку погоди з передачею столиці
   searchWeatherForCapital() {
     this.router.navigate(['/weather'], { queryParams: { city: this.country.capital[0] } });
-    this.closeModal(); // Закрити модальне вікно після переходу
+    this.closeModal();
   }
 
  getCapitalCoordinates() {

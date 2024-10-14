@@ -4,7 +4,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.7); /* Світлий фон */
+  background-color: rgba(255, 255, 255, 0.7);
   z-index: 999;
 }
 
@@ -17,9 +17,9 @@
   display: block;
   width: 80vw;
   max-width: 700px;
-  max-height: 90vh; /* Максимальна висота модалки */
-  background-color: #f9f9f9; /* Світлий фон */
-  border-radius: 12px; /* Закруглені кути */
+  max-height: 90vh;
+  background-color: #f9f9f9;
+  border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 }
@@ -28,9 +28,9 @@
   padding: 20px;
   position: relative;
   text-align: center;
-  color: #333; /* Темний текст */
+  color: #333;
   max-height: 100%;
-  overflow-y: auto; /* Додає вертикальний скролінг */
+  overflow-y: auto;
 }
 
 .modal-body {
@@ -43,7 +43,7 @@
   right: 10px;
   font-size: 24px;
   cursor: pointer;
-  color: #333; /* Темний колір для хрестика */
+  color: #333;
 }
 
 button {
