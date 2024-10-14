@@ -19,6 +19,7 @@ import { PopulationPageCopyComponent } from './pages/population-page copy/popula
     CountryTableComponent,
     PopulationPageCopyComponent,
     MainPageCountriesComponent,
+     CountryTableComponent,
   ],
   imports: [
     CommonModule,

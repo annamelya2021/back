@@ -4,11 +4,13 @@ import { CommonModule } from '@angular/common';
 import { MapRoutingModule } from './map-routing.module';
 import { MapComponent } from './pages/map/map.component';
 import { SharedModule } from '../shared/shared.module';
+import { MapDisplayComponent } from './components/map-display/map-display.component';
 
 
 @NgModule({
   declarations: [
-    MapComponent
+    MapComponent,
+    MapDisplayComponent
   ],
   imports: [
     CommonModule,

@@ -1,24 +1,40 @@
-// map.component.ts
-import { Component, OnInit } from '@angular/core';
-import * as L from 'leaflet';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import * as mapboxgl from 'mapbox-gl';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit {
-  map!: L.Map;
+export class MapComponent implements OnInit, OnDestroy {
+  map!: mapboxgl.Map;
 
   ngOnInit(): void {
     this.initMap();
   }
 
   private initMap(): void {
-    this.map = L.map('map').setView([51.505, -0.09], 13);
+    this.map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [-2.9417, 43.4161],
+      zoom: 12,
+      accessToken: 'pk.eyJ1IjoiYW5uYW1lbHlhIiwiYSI6ImNtMWt0cGVvcjAybTYybHNlMW1hdmVmbjQifQ.g-UW6f6pr02vcC8MHcIOPQ' // Токен
+    });
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap contributors'
-    }).addTo(this.map);
+    // Додавання маркера
+    new mapboxgl.Marker({
+      color: 'red',
+      draggable: true
+    })
+    .setLngLat([-2.9417, 43.4161])
+    .addTo(this.map);
+
+
+
+  }
+
+  ngOnDestroy(): void {
+    this.map.remove();
   }
 }

@@ -60,7 +60,7 @@ export class WeatherComponent implements OnInit {
         this.country = this.MyWeather.sys.country;
         this.sunrise = new Date(this.MyWeather.sys.sunrise * 1000).toLocaleTimeString();
         this.sunset = new Date(this.MyWeather.sys.sunset * 1000).toLocaleTimeString();
-        this.getRecommendation(this.summary);  // Додано виклик рекомендацій
+        this.getRecommendation(this.summary);
       },
       error: (error) => {
         console.log(error.message);
