@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, OnChanges } from '@angular/core';
 import { Country } from '../../../countries/countryApp/interfaces/country.interface';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { Router } from '@angular/router';  // Додаємо Router
 
 @Component({
   selector: 'app-country-detail-modal',
@@ -15,7 +16,8 @@ export class CountryDetailModalComponent implements OnChanges {
   capitalCoords: { lat: number, lng: number } | undefined;
   mapUrl: SafeResourceUrl | undefined;
 
-  constructor(private sanitizer: DomSanitizer) {}
+  // Впроваджуємо Router у конструктор
+  constructor(private sanitizer: DomSanitizer, private router: Router) {}
 
   ngOnChanges() {
     this.capitalCoords = this.getCapitalCoordinates();
@@ -31,11 +33,17 @@ export class CountryDetailModalComponent implements OnChanges {
     this.close.emit();
   }
 
-  getCapitalCoordinates() {
-    if (this.country.capitalInfo && this.country.capitalInfo.latlng) {
-      const [lat, lng] = this.country.capitalInfo.latlng;
-      return { lat, lng };
-    }
-    return undefined;
+  // Метод для навігації на сторінку погоди з передачею столиці
+  searchWeatherForCapital() {
+    this.router.navigate(['/weather'], { queryParams: { city: this.country.capital[0] } });
+    this.closeModal(); // Закрити модальне вікно після переходу
   }
+
+ getCapitalCoordinates() {
+  if (this.country && this.country.capitalInfo && this.country.capitalInfo.latlng) {
+    const [lat, lng] = this.country.capitalInfo.latlng;
+    return { lat, lng };
+  }
+  return undefined;
+}
 }
