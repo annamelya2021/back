@@ -12,6 +12,7 @@ import { CountriesModule } from './countries/countries.module';
 import { BanderasModule } from './banderas/banderas.module';
 import { MainPageCountriesComponent } from './countries/pages/main-page-countries/main-page-countries.component';
 import { FormsModule } from '@angular/forms';
+import { MapModule } from './map/map.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { FormsModule } from '@angular/forms';
     CountriesModule,
     RouterModule,
     BanderasModule,
-     FormsModule
+    MapModule,
+    FormsModule
   ],
   providers: [
     provideAnimationsAsync()

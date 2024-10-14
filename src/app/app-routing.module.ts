@@ -33,6 +33,13 @@ const routes: Routes = [
     canMatch: [ AuthGuard ]
 },
 
+{
+  path: 'maps',
+  loadChildren: () => import('./map/map.module').then( m => m.MapModule),
+  canActivate: [ AuthGuard ],
+    canMatch: [ AuthGuard ]
+},
+
   {
     path: '404',
     component: Error404Component,
