@@ -112,6 +112,11 @@ private loadFromLocalStorage(){
     }
 
 
+    clearCountryCache(): void {
+    this.cacheStore.byCountries.countries = [];
+    this.cacheStore.byCountries.term = '';
+  }
+
   }
 
 

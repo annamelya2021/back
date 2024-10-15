@@ -1,4 +1,4 @@
-<h2>Por pais</h2>
+
 <hr>
 
 <div class="row">
@@ -14,7 +14,7 @@
 
 <shared-loading-spiner *ngIf="isLoading"></shared-loading-spiner>
 
-<div class="row">
+<div *ngIf="countries.length > 0" class="row">
   <div class="col">
     <counries-table [countries]="countries"></counries-table>
   </div>
@@ -22,9 +22,10 @@
 
 <div *ngIf="selectedCountry" class="row mb-3">
   <div class="col">
-    <button (click)="goToCountry()" class="btn btn-primary">ver en mapa</button>
+    <button (click)="goToCountry()" class="btn btn-primary">Ver en mapa</button>
   </div>
 </div>
+
 <div class="map-container">
   <div id="map" style="height: 500px;"></div>
 </div>

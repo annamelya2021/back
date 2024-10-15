@@ -20,9 +20,11 @@ export class ByCountryPageComponent implements OnInit, OnDestroy {
   public countries: Country[] = [];
   public isLoading: boolean = false;
   public initialValue: string = '';
-  public selectedCountry?: Country; 
+  public selectedCountry?: Country;
 
   private map!: mapboxgl.Map;
+  private initialCenter: [number, number] = [0, 0];
+  private initialZoom: number = 1;
 
   constructor(private countriesService: CountriesService) {}
 
@@ -33,10 +35,9 @@ export class ByCountryPageComponent implements OnInit, OnDestroy {
     this.map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [0, 0],
-      zoom: 1,
-     accessToken: 'pk.eyJ1IjoiYW5uYW1lbHlhIiwiYSI6ImNtMWt0cGVvcjAybTYybHNlMW1hdmVmbjQifQ.g-UW6f6pr02vcC8MHcIOPQ'
-
+      center: this.initialCenter,
+      zoom: this.initialZoom,
+      accessToken: 'pk.eyJ1IjoiYW5uYW1lbHlhIiwiYSI6ImNtMWt0cGVvcjAybTYybHNlMW1hdmVmbjQifQ.g-UW6f6pr02vcC8MHcIOPQ'
     });
   }
 
@@ -45,14 +46,24 @@ export class ByCountryPageComponent implements OnInit, OnDestroy {
       this.map.remove();
     }
   }
+
   searchByCountry(term: string): void {
     this.isLoading = true;
+    if (term.trim() === '') {
+      this.resetMapAndCountry();
+      this.countriesService.clearCountryCache();
+      this.isLoading = false;
+      return;
+    }
+
     this.countriesService.searchCountry(term).subscribe(countries => {
       this.countries = countries;
       this.isLoading = false;
 
       if (this.countries.length > 0) {
         this.selectedCountry = this.countries[0];
+      } else {
+        this.selectedCountry = undefined;
       }
     });
   }
@@ -67,5 +78,16 @@ export class ByCountryPageComponent implements OnInit, OnDestroy {
         essential: true
       });
     }
+  }
+
+  private resetMapAndCountry(): void {
+    this.map.flyTo({
+      center: this.initialCenter,
+      zoom: this.initialZoom,
+      essential: true
+    });
+
+    this.selectedCountry = undefined;
+    this.countries = [];
   }
 }

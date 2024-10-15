@@ -6,6 +6,9 @@
   <button mat-button routerLink="/weather">Weather</button>
   <button mat-button routerLink="/flags">Flags</button>
   <button mat-button routerLink="/maps">Maps</button>
+   <button mat-button (click)="toggleTheme()">
+    {{ isDarkTheme() ? 'Light Theme' : 'Dark Theme' }}
+  </button>
 
   <span class="spacer"></span>
 

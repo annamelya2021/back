@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { User } from '../../../auth/interfaces/user.interface';
 import { AuthService } from '../../../auth/services/auth.service';
+import { ThemeService } from '../../../tiempo/services/theme.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +14,8 @@ import { AuthService } from '../../../auth/services/auth.service';
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private themeService: ThemeService
   )  {
 }
 
@@ -46,5 +48,14 @@ onLogout() {
 
   isAuthenticated(): boolean {
     return !!localStorage.getItem('token');
+  }
+
+
+  toggleTheme() {
+    this.themeService.toggleTheme();
+  }
+
+  isDarkTheme(): boolean {
+    return this.themeService.isDarkTheme();
   }
 }

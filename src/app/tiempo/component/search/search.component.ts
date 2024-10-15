@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'search-weather',
@@ -18,9 +18,12 @@ export class SearchComponent implements OnInit {
 
   constructor(private route: ActivatedRoute) {
     this.searchSubject.pipe(
-      debounceTime(1000)
+      debounceTime(1000),
+      distinctUntilChanged(),
     ).subscribe(city => {
-      if (city) {
+      if (city.length === 0) {
+        this.citySearch.emit('');  // Якщо місто порожнє, скидаємо пошук
+      } else if (city.length > 2) {
         this.citySearch.emit(city);
       }
     });
@@ -28,11 +31,11 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-  if (params['city']) {
-    this.cityName = params['city'];
-    this.onSearch();
-  }
-});
+      if (params['city']) {
+        this.cityName = params['city'];
+        this.onSearch();
+      }
+    });
   }
 
   onSearch() {

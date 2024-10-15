@@ -21,7 +21,6 @@ export class WeatherComponent implements OnInit {
 
 
   constructor(private weatherService:WeatherService, private snackBar: MatSnackBar){
-
   }
 
   ngOnInit(): void {}
@@ -46,27 +45,51 @@ export class WeatherComponent implements OnInit {
       this.recommendation = 'Check the weather and plan accordingly.';
     }
   }
+onCitySearch(city: string) {
 
-  onCitySearch(city: string) {
-    this.weatherService.getWeather(city).subscribe({
-      next: (res) => {
-        this.MyWeather = res;
-        this.temperature = this.MyWeather.main.temp;
-        this.feelsLikeTemp = this.MyWeather.main.feels_like;
-        this.humidity = this.MyWeather.main.humidity;
-        this.pressure = this.MyWeather.main.pressure;
-        this.summary = this.MyWeather.weather[0].main;
-        this.iconUrl = 'https://openweathermap.org/img/wn/' + this.MyWeather.weather[0].icon + '@2x.png';
-        this.country = this.MyWeather.sys.country;
-        this.sunrise = new Date(this.MyWeather.sys.sunrise * 1000).toLocaleTimeString();
-        this.sunset = new Date(this.MyWeather.sys.sunset * 1000).toLocaleTimeString();
-        this.getRecommendation(this.summary);
-      },
-      error: (error) => {
-        console.log(error.message);
-        this.snackBar.open('City not found or API error', 'Close', { duration: 3000 });
-      },
-      complete: () => console.info('Api call completed')
-    });
+  if (city === '') {
+    this.resetWeather();
+    return;
   }
+
+  if (city.length < 3) {
+    this.snackBar.open('Please enter at least 3 characters', 'Close', { duration: 3000 });
+    return;
+  }
+
+  this.weatherService.getWeather(city).subscribe({
+    next: (res) => {
+      this.MyWeather = res;
+      this.temperature = this.MyWeather.main.temp;
+      this.feelsLikeTemp = this.MyWeather.main.feels_like;
+      this.humidity = this.MyWeather.main.humidity;
+      this.pressure = this.MyWeather.main.pressure;
+      this.summary = this.MyWeather.weather[0].main;
+      this.iconUrl = 'https://openweathermap.org/img/wn/' + this.MyWeather.weather[0].icon + '@2x.png';
+      this.country = this.MyWeather.sys.country;
+      this.sunrise = new Date(this.MyWeather.sys.sunrise * 1000).toLocaleTimeString();
+      this.sunset = new Date(this.MyWeather.sys.sunset * 1000).toLocaleTimeString();
+      this.getRecommendation(this.summary);
+    },
+    error: (error) => {
+      console.log(error.message);
+      this.snackBar.open('City not found or API error', 'Close', { duration: 3000 });
+    },
+    complete: () => console.info('Api call completed')
+  });
+}
+
+resetWeather(): void {
+  this.MyWeather = null;
+  this.temperature = 0;
+  this.feelsLikeTemp = 0;
+  this.humidity = 0;
+  this.pressure = 0;
+  this.summary = '';
+  this.iconUrl = '';
+  this.country = '';
+  this.sunrise = '';
+  this.sunset = '';
+  this.recommendation = '';
+}
 }

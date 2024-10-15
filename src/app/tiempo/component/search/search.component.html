@@ -9,6 +9,9 @@
         (keyup)="onSearch()"
         autocomplete="off"
       >
+      <mat-hint *ngIf="cityName.length < 3">
+        Please enter at least 3 characters
+      </mat-hint>
     </mat-form-field>
   </div>
 </div>

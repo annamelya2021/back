@@ -1,5 +1,3 @@
-
-
 import { Component, OnInit } from '@angular/core';
 import { Country } from '../../countryApp/interfaces/country.interface';
 import { CountriesService } from '../../countryApp/services/countries.service';
@@ -27,18 +25,9 @@ export class ByCapitalPageComponent implements OnInit {
   constructor(private countriesService: CountriesService) {}
 
   ngOnInit(): void {
-    this.countries = this.countriesService.cacheStore.byCapital.countries;
-    this.initialValue = this.countriesService.cacheStore.byCapital.term;
-
-    const validCountries = this.countries.filter(country => country.latlng && country.latlng.length === 2);
-    if (validCountries.length > 0) {
-      this.selectedCountry = validCountries[0];
-      // console.log("Selected country coordinates:", this.selectedCountry.latlng);
-    }
-
     this.initMap();
+    this.clearCache();
   }
-
 
   private initMap(): void {
     this.map = new mapboxgl.Map({
@@ -53,33 +42,54 @@ export class ByCapitalPageComponent implements OnInit {
   searchByCapital(term: string): void {
     this.isLoading = true;
 
+    if (term.trim() === '') {
+      this.resetMapAndCountry();
+      this.isLoading = false;
+      return;
+    }
+
     this.countriesService.searchCapital(term).subscribe((countries) => {
-      // console.log("Countries fetched from API:", countries);
       this.countries = countries;
       this.isLoading = false;
 
       const validCountries = this.countries.filter(country => country.latlng && country.latlng.length === 2);
       if (validCountries.length > 0) {
         this.selectedCountry = validCountries[0];
-        // console.log("New selected country coordinates:", this.selectedCountry.latlng);
       } else {
         console.warn("No valid countries with latlng found.");
       }
     });
   }
 
-goToCountry(): void {
-  if (this.selectedCountry && this.selectedCountry.latlng) {
-    const [lat, lng] = this.selectedCountry.latlng;
-    // console.log(`Navigating to: lng=${lng}, lat=${lat}`);
+  goToCountry(): void {
+    if (this.selectedCountry && this.selectedCountry.latlng) {
+      const [lat, lng] = this.selectedCountry.latlng;
+      this.map.flyTo({
+        center: [lng, lat],
+        zoom: 6,
+        essential: true
+      });
+    } else {
+      console.warn("No selected country or latlng is not available.");
+    }
+  }
+
+  private resetMapAndCountry(): void {
+
     this.map.flyTo({
-      center: [lng, lat],
-      zoom: 6,
+      center: [-2.9417, 43.4161],
+      zoom: 1,
       essential: true
     });
-  } else {
-    console.warn("No selected country or latlng is not available.");
+
+    this.selectedCountry = undefined;
+  }
+
+  private clearCache(): void {
+    this.countriesService.cacheStore.byCapital.countries = [];
+    this.countriesService.cacheStore.byCapital.term = '';
+    this.countries = [];
+    this.initialValue = '';
+    this.selectedCountry = undefined;
   }
 }
-}
-
