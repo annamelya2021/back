@@ -1,20 +1,30 @@
-<!-- <h2>Por pais</h2> -->
+<h2>Por pais</h2>
 <hr>
 
 <div class="row">
   <div class="col">
- <!-- busquedas -->
- <shared-search-box
- [initialValue]="initialValue"
-  (onDebounce)="searchByCountry($event)"
-  placeholder="Buscar por pais" ></shared-search-box>
+    <shared-search-box
+      [initialValue]="initialValue"
+      (onDebounce)="searchByCountry($event)"
+      placeholder="Buscar por pais">
+    </shared-search-box>
   </div>
 </div>
 <hr>
+
 <shared-loading-spiner *ngIf="isLoading"></shared-loading-spiner>
+
 <div class="row">
   <div class="col">
-<counries-table [countries]="countries"></counries-table>
+    <counries-table [countries]="countries"></counries-table>
   </div>
 </div>
 
+<div *ngIf="selectedCountry" class="row mb-3">
+  <div class="col">
+    <button (click)="goToCountry()" class="btn btn-primary">Перемістити на країну</button>
+  </div>
+</div>
+<div class="map-container">
+  <div id="map" style="height: 500px;"></div>
+</div>

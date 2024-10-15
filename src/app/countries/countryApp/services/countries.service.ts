@@ -9,7 +9,7 @@ import { Region } from '../interfaces/region.type';
 
 @Injectable({providedIn: 'root'})
 export class CountriesService {
- private apiUrl: string ='https://restcountries.com/v3.1'
+  private apiUrl: string = 'https://restcountries.com/v3.1'
  public cacheStore: CacheStore = {
   byCapital: {term: '', countries: []},
   byCountries: {term: '', countries: []},
