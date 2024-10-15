@@ -20,7 +20,7 @@ export class ByCountryPageComponent implements OnInit, OnDestroy {
   public countries: Country[] = [];
   public isLoading: boolean = false;
   public initialValue: string = '';
-  public selectedCountry?: Country; // Додано для зберігання обраної країни
+  public selectedCountry?: Country; 
 
   private map!: mapboxgl.Map;
 
@@ -30,47 +30,41 @@ export class ByCountryPageComponent implements OnInit, OnDestroy {
     this.countries = this.countriesService.cacheStore.byCountries.countries;
     this.initialValue = this.countriesService.cacheStore.byCountries.term;
 
-    // Ініціалізація карти
     this.map = new mapboxgl.Map({
-      container: 'map', // ID контейнера для карти
-      style: 'mapbox://styles/mapbox/streets-v11', // Стиль карти
-      center: [0, 0], // Початкові координати [довгота, широта]
-      zoom: 1, // Початковий масштаб
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [0, 0],
+      zoom: 1,
      accessToken: 'pk.eyJ1IjoiYW5uYW1lbHlhIiwiYSI6ImNtMWt0cGVvcjAybTYybHNlMW1hdmVmbjQifQ.g-UW6f6pr02vcC8MHcIOPQ'
 
     });
   }
 
   ngOnDestroy(): void {
-    // Знищуємо карту перед виходом з компонента
     if (this.map) {
       this.map.remove();
     }
   }
-
-  // Метод для пошуку країни
   searchByCountry(term: string): void {
     this.isLoading = true;
     this.countriesService.searchCountry(term).subscribe(countries => {
       this.countries = countries;
       this.isLoading = false;
 
-      // Вибір першої валідної країни
       if (this.countries.length > 0) {
-        this.selectedCountry = this.countries[0]; // Можна вибрати будь-яку країну
+        this.selectedCountry = this.countries[0];
       }
     });
   }
 
-  // Метод для переміщення карти до координат обраної країни
   goToCountry(): void {
     if (this.selectedCountry && this.selectedCountry.latlng) {
-      const [lat, lng] = this.selectedCountry.latlng; // Широта та довгота
+      const [lat, lng] = this.selectedCountry.latlng;
 
       this.map.flyTo({
-        center: [lng, lat], // Міняємо місцями координати для Mapbox
-        zoom: 5, // Рівень масштабу
-        essential: true // Плавна анімація
+        center: [lng, lat],
+        zoom: 5,
+        essential: true
       });
     }
   }
