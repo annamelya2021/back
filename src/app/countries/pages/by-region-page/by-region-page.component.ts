@@ -85,7 +85,7 @@ export class ByRegionPageComponent implements OnInit {
     } else if (region === 'Americas') {
       this.map.flyTo({ center: [-85, 37], zoom: 1 });
     } else if (region === 'Asia') {
-      this.map.flyTo({ center: [100, 30], zoom: 2 });
+      this.map.flyTo({ center: [100, 30], zoom: 1 });
     } else if (region === 'Europe') {
       this.map.flyTo({ center: [10, 50], zoom: 2 });
     } else if (region === 'Oceania') {

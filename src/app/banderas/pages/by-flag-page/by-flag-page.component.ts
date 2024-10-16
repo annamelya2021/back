@@ -14,20 +14,21 @@ import { CountriesService } from '../../../countries/countryApp/services/countri
       height: 200px;
       object-fit: cover;
       object-position: center;
-      transition: transform 0.3s ease-in-out; /* Додаємо плавну анімацію до зображення */
+      transition: transform 0.3s ease-in-out;
     }
 
     .card {
-      transition: transform 0.3s ease, box-shadow 0.3s ease; /* Плавний ефект для всієї картки */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .card:hover {
-      transform: translateY(-5px); /* Піднімаємо картку при наведенні */
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Додаємо тінь при наведенні */
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      cursor:pointer;
     }
 
     .card:hover {
-      transform: scale(1.05); /* Збільшуємо зображення при наведенні */
+      transform: scale(1.05);
     }
   `]
 })
