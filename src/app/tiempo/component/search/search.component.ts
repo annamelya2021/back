@@ -22,7 +22,7 @@ export class SearchComponent implements OnInit {
       distinctUntilChanged(),
     ).subscribe(city => {
       if (city.length === 0) {
-        this.citySearch.emit('');  // Якщо місто порожнє, скидаємо пошук
+        this.citySearch.emit('');  
       } else if (city.length > 2) {
         this.citySearch.emit(city);
       }

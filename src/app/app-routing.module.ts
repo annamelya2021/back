@@ -44,11 +44,6 @@ const routes: Routes = [
     path: '404',
     component: Error404Component,
   },
-/*   {
-    path: '',
-    redirectTo: 'weather',
-    pathMatch: 'full'
-  }, */
   {
     path: '',
     redirectTo: 'auth/login',

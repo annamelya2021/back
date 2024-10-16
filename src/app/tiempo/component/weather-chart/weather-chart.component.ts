@@ -31,7 +31,7 @@ export class WeatherChartComponent implements OnChanges {
       this.chart.destroy();
     }
     this.chart = new Chart(ctx, {
-      type: 'bar', // Можна змінити на 'bar', 'line', 'pie', 'doughnut', 'polarArea'
+      type: 'bar',
       data: {
         labels: labels,
         datasets: [{

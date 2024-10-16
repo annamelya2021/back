@@ -1,6 +1,6 @@
 #map {
-  height: 100vh; /* Висота 100% від вікна */
-  width: 100vw; /* Ширина 100% від вікна */
-  position: relative; /* Відносне позиціонування для коректної роботи з іншими елементами */
+  height: 100vh;
+  width: 100vw;
+  position: relative; 
 }
 

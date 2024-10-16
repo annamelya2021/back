@@ -6,7 +6,6 @@ import { Country } from '../../../countries/countryApp/interfaces/country.interf
 @Component({
   selector: 'app-map-display',
   template: '<div id="map" style="height: 300px; width: 100%;"></div>',
-  styleUrls: ['./map-display.component.css']
 })
 export class MapDisplayComponent implements OnInit {
   @Input() country!: Country;

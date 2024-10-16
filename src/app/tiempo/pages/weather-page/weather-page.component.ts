@@ -4,7 +4,6 @@ import { ThemeService } from '../../services/theme.service';
 @Component({
   selector: 'app-weather-page',
   templateUrl: './weather-page.component.html',
-  styleUrl: './weather-page.component.css'
 })
 export class WeatherPageComponent {
 
