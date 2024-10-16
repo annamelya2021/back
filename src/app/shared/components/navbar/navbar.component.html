@@ -1,20 +1,23 @@
 <mat-toolbar color="primary">
-  <span>My App</span>
+  <!-- <span>My App</span> -->
   <span class="spacer"></span>
 
   <button mat-button *ngIf="isAdmin()" routerLink="/countries">Countries</button>
   <button mat-button routerLink="/weather">Weather</button>
   <button mat-button routerLink="/flags">Flags</button>
   <button mat-button routerLink="/maps">Maps</button>
-   <button mat-button (click)="toggleTheme()">
-    {{ isDarkTheme() ? 'Light Theme' : 'Dark Theme' }}
-  </button>
+
 
   <span class="spacer"></span>
 
   <span *ngIf="user">{{ user.email }}</span>
 
- <button mat-button (click)="onAuthAction()">
+    <button mat-button (click)="toggleTheme()">
+    <mat-icon>{{ isDarkTheme() ? 'nights_stay' : 'wb_sunny' }}</mat-icon>
+  </button>
+  <button mat-button (click)="onAuthAction()">
+    <mat-icon>{{ isAuthenticated() ? 'logout' : 'login' }}</mat-icon>
     {{ isAuthenticated() ? 'Logout' : 'Login' }}
-</button>
+  </button>
+
 </mat-toolbar>
