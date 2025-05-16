@@ -1,5 +1,4 @@
-# Refactorizacion
-## Dev
+
 
 1. Clonar el proyecto
 2. Ejecutar ```npm install```
